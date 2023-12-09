@@ -1,5 +1,7 @@
 # Split View
 
+![Android Example](./example/assets/Screenshot_1702126760.png)
+
 In app splitting for screens on android and ios.
 
 ### Usage Example
@@ -7,7 +9,7 @@ In app splitting for screens on android and ios.
 1. Import the component
 
 ```jsx
-import {SplitPane} from 'split-view';
+import { SplitPane } from "split-view";
 ```
 
 2. Provide Screens for the component
