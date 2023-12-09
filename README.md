@@ -1,6 +1,6 @@
 # Split View
 
-![Android Example](./example/assets/Screenshot_1702126760.png)
+<img src="./example/assets/Example.png" height="400" />
 
 In app splitting for screens on android and ios.
 
