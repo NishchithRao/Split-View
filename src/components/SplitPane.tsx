@@ -5,20 +5,20 @@ import {
   ScrollView,
   StyleSheet,
   View,
-} from 'react-native';
-import React, {ReactElement} from 'react';
+} from "react-native";
+import React, { ReactElement } from "react";
 import {
   getDragFn,
   getOrientation,
   largestSideDimension,
   useOrientation,
   useOrientationStyles,
-} from './utils';
+} from "../utils";
 
-import Placeholder from './Placeholder';
-import Separator from './Separator';
-import {SplitPanel} from './SplitPanel';
-import {useRef} from 'react';
+import Placeholder from "./Placeholder";
+import Separator from "./Separator";
+import { SplitPanel } from "./SplitPanel";
+import { useRef } from "react";
 
 export interface SplitBarProps {
   /**
@@ -54,10 +54,10 @@ export const SplitPane = ({
   right,
 }: SplitBarProps): JSX.Element | null => {
   const startPanValue = useRef(
-    new Animated.Value(largestSideDimension() / 2 - 24),
+    new Animated.Value(largestSideDimension() / 2 - 24)
   ).current;
   const endPaneValue = useRef(
-    new Animated.Value(largestSideDimension() / 2 - 32),
+    new Animated.Value(largestSideDimension() / 2 - 32)
   ).current;
   const startPaneRef = useRef<ScrollView>(null);
 
@@ -66,15 +66,15 @@ export const SplitPane = ({
     endPaneValue.setValue(largestSideDimension() / 2 - 32);
   });
 
-  const orientationStyles = useOrientationStyles('parentContainer');
+  const orientationStyles = useOrientationStyles("parentContainer");
 
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: e => {
-        const orientation = getOrientation(Dimensions.get('screen'));
+      onPanResponderMove: (e) => {
+        const orientation = getOrientation(Dimensions.get("screen"));
         const fn = getDragFn(orientation);
-        const {pan2HeightValue, panHeightValue} = fn(e, startPaneRef);
+        const { pan2HeightValue, panHeightValue } = fn(e, startPaneRef);
 
         endPaneValue.setValue(panHeightValue);
         startPanValue.setValue(pan2HeightValue);
@@ -83,7 +83,7 @@ export const SplitPane = ({
       onPanResponderRelease: () => {
         return true;
       },
-    }),
+    })
   ).current;
 
   if (!enabled) {
@@ -111,9 +111,9 @@ export const SplitPane = ({
 
 const styles = StyleSheet.create({
   parentContainer: {
-    height: Dimensions.get('screen').height,
-    backgroundColor: 'black',
-    justifyContent: 'center',
-    overflow: 'hidden',
+    height: Dimensions.get("screen").height,
+    backgroundColor: "black",
+    justifyContent: "center",
+    overflow: "hidden",
   },
 });

@@ -1,8 +1,8 @@
-import {Animated, ScrollView, StyleSheet} from 'react-native';
-import {ReactNode, forwardRef} from 'react';
+import { Animated, ScrollView, StyleSheet } from "react-native";
+import { ReactNode, forwardRef } from "react";
 
-import React from 'react';
-import {useOrientationComposedStyle} from './utils';
+import React from "react";
+import { useOrientationComposedStyle } from "../utils";
 
 export interface ISplitPanelProps {
   _height: Animated.Value;
@@ -10,7 +10,7 @@ export interface ISplitPanelProps {
 }
 
 export const SplitPanel = forwardRef<ScrollView, ISplitPanelProps>(
-  ({_height, children}: ISplitPanelProps, ref) => {
+  ({ _height, children }: ISplitPanelProps, ref) => {
     const animatedStyles = useOrientationComposedStyle(_height);
 
     return (
@@ -20,19 +20,19 @@ export const SplitPanel = forwardRef<ScrollView, ISplitPanelProps>(
         </Animated.ScrollView>
       </Animated.View>
     );
-  },
+  }
 );
 
 const styles = StyleSheet.create({
   section: {
     borderRadius: 20,
-    backgroundColor: 'black',
+    backgroundColor: "black",
   },
   container: {
     borderRadius: 20,
-    overflow: 'hidden',
-    backgroundColor: 'black',
+    overflow: "hidden",
+    backgroundColor: "black",
   },
 });
 
-SplitPanel.displayName = ' SplitPanel';
+SplitPanel.displayName = " SplitPanel";
