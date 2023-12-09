@@ -2,8 +2,23 @@
   "name": "split-view",
   "license": "MIT",
   "version": "0.0.1",
+  "main": "./split-view.js",
+  "module": "./split-view.mjs",
   "peerDependencies": {
     "react": ">16",
     "react-native": ">0.70"
+  },
+  "scripts": {
+    "build": "vite build",
+    "postbuild": "cp ./package.json ./dist"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@vitejs/plugin-react": "^4.2.1",
+    "react": "^18.2.0",
+    "react-native": "0.72.7",
+    "rollup-plugin-visualizer": "^5.10.0",
+    "vite": "^5.0.7",
+    "vite-plugin-dts": "^3.6.4"
   }
 }

@@ -68,3 +68,4 @@ node_modules
 example/node_modules
 .bundle
 vendor
+dist
