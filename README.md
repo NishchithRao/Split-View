@@ -1,5 +1,7 @@
 # Split View
 
+A small library that enables split view between 2 screens with an props to add actions in the split bar.
+
 <img src="./example/assets/Example.png" height="400" />
 
 In app splitting for screens on android and ios.
