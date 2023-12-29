@@ -1,12 +1,12 @@
 import {
   Animated,
+  Dimensions,
   GestureResponderHandlers,
   StyleSheet,
   View,
 } from "react-native";
 
-import React from "react";
-import { useOrientationStyles } from "../utils";
+import { useOrientation } from "../utils";
 
 interface SeparatorProps {
   handlers: GestureResponderHandlers;
@@ -15,19 +15,19 @@ interface SeparatorProps {
 }
 
 export default function Separator({ left, right, handlers }: SeparatorProps) {
-  const orientationStyles = useOrientationStyles("bar");
+  const orientation = useOrientation();
 
   return (
     <Animated.View
       pointerEvents="auto"
       {...handlers}
-      style={[styles.container]}
+      style={[styles.container, styles[orientation]]}
     >
       {left}
-      <View style={styles.barContainer}>
+      <View style={barStyles.barContainer}>
         <View
           pointerEvents="none"
-          style={[styles.bar, orientationStyles]}
+          style={[barStyles[orientation], barStyles.bar]}
           id="bar"
         />
       </View>
@@ -35,22 +35,40 @@ export default function Separator({ left, right, handlers }: SeparatorProps) {
     </Animated.View>
   );
 }
+
+const barStyles = StyleSheet.create({
+  bar: {
+    backgroundColor: "grey",
+    borderRadius: 1000,
+  },
+  portrait: {
+    height: 100,
+    width: 5,
+  },
+  landscape: {
+    height: 4,
+    width: 100,
+  },
+  barContainer: {
+    paddingVertical: 10,
+  },
+});
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: "space-between",
-    flexDirection: "row",
     alignItems: "center",
     backgroundColor: "black",
     paddingHorizontal: 20,
     paddingVertical: 5,
   },
-  bar: {
-    height: 4,
-    width: 100,
-    backgroundColor: "grey",
-    borderRadius: 1000,
-  },
-  barContainer: {
+  portrait: {
+    flexDirection: "column",
+    height: Dimensions.get("screen").height - 50,
+    paddingHorizontal: 8,
     paddingVertical: 10,
+  },
+  landscape: {
+    flexDirection: "row",
   },
 });

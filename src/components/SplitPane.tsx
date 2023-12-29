@@ -6,13 +6,11 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import React, { ReactElement } from "react";
 import {
   getDragFn,
   getOrientation,
   largestSideDimension,
   useOrientation,
-  useOrientationStyles,
 } from "../utils";
 
 import Placeholder from "./Placeholder";
@@ -22,9 +20,12 @@ import { useRef } from "react";
 
 export interface SplitBarProps {
   /**
-   * The top/left screen.
+   * The top/left screen
    */
   startScreen: JSX.Element;
+  /**
+   * The bottom/right screen
+   */
   endScreen?: JSX.Element;
   /**
    * Programatically enable/disable split view
@@ -61,12 +62,10 @@ export const SplitPane = ({
   ).current;
   const startPaneRef = useRef<ScrollView>(null);
 
-  useOrientation(() => {
+  const orientation = useOrientation(() => {
     startPanValue.setValue(largestSideDimension() / 2 - 24);
     endPaneValue.setValue(largestSideDimension() / 2 - 32);
   });
-
-  const orientationStyles = useOrientationStyles("parentContainer");
 
   const panResponder = useRef(
     PanResponder.create({
@@ -91,7 +90,7 @@ export const SplitPane = ({
   }
 
   return (
-    <View style={[styles.parentContainer, orientationStyles]}>
+    <View style={[styles.parentContainer, styles[orientation]]}>
       <SplitPanel ref={startPaneRef} _height={startPanValue}>
         {startScreen}
       </SplitPanel>
@@ -115,5 +114,11 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     justifyContent: "center",
     overflow: "hidden",
+  },
+  portrait: {
+    flexDirection: "row",
+  },
+  landscape: {
+    flexDirection: "column",
   },
 });

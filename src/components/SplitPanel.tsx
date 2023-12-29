@@ -1,12 +1,11 @@
 import { Animated, ScrollView, StyleSheet } from "react-native";
-import { ReactNode, forwardRef } from "react";
 
-import React from "react";
+import { forwardRef } from "react";
 import { useOrientationComposedStyle } from "../utils";
 
 export interface ISplitPanelProps {
   _height: Animated.Value;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const SplitPanel = forwardRef<ScrollView, ISplitPanelProps>(
