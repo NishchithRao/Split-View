@@ -22,7 +22,7 @@ const App = () => {
 };
 ```
 
-3. Provide additional elements to showcase in the divider
+3. Provide additional actions to showcase in the divider
 
 ```jsx
 const App = () => {
