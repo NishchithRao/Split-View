@@ -1,11 +1,20 @@
 const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
-
+const path = require('path');
 /**
  * Metro configuration
  * https://facebook.github.io/metro/docs/configuration
  *
  * @type {import('metro-config').MetroConfig}
  */
-const config = {};
+const config = {
+  watchFolders: [path.join(__dirname, '../src')],
+  resolver: {
+    nodeModulesPaths: [
+      path.join(__dirname, './node_modules'),
+      path.join(__dirname, '../node_modules'),
+    ],
+    extraNodeModules: {'split-view': path.resolve(__dirname, '../src')},
+  },
+};
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
